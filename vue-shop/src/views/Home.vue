@@ -2,7 +2,7 @@
   <div class="home">
       <div class="container">
         <Banner :swiperSlides='sliders'></Banner> 
-        <div>
+        <div class="home-list">
            <ul>
              <li v-for="item in homelist" :key="item.id">
                <img :src="item.img" alt="">
@@ -48,3 +48,26 @@ export default {
   }
 }
 </script>
+<style lang="less">
+.home-list{
+   ul{
+     padding: 0 15px;
+     box-sizing: border-box;
+     display: flex;
+     flex-wrap: wrap;
+    li{
+       width: 50%;
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+       margin-top: 20px;
+       border-bottom: 1px solid #eee;
+       img{
+         max-width: 90%;
+         height: auto;
+        }
+     }
+   }
+}
+</style>
