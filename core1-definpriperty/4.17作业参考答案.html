@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	 <style>
+		 #inp,#inp1{
+			
+			 display: block;
+			 width: 600px;
+			 height: 60px;
+			 border:2px solid red;
+			 margin: 0 auto;
+			 font-size: 40px;
+			  margin-top: 20px;
+		 }
+	 </style>
+	 
+</head>
+<body>
+	<input type="text" id="inp">
+	<input id="inp1" type="text">
+	<script>
+	inp.oninput= function(e){
+   //inp的的值改变 引起obj.name的改变
+   obj.name = e.target.value;
+}
+inp1.oninput= function(e){
+   //inp的的值改变 引起obj.name的改变
+   obj.age = e.target.value;
+}
+for(let key in obj){
+	defineReactive(obj,key,obj[key])
+}
+function defineReactive(obj,key,value){
+	Object.defineProperty(obj,key,{
+		get(){
+          return value
+		},
+		set(val){
+		 value=val;
+		// 判断哪个可以变化了来绑定input框的值
+		if(key=='name'){
+			inp.value=val
+		}else{
+			inp1.value=val
+		}
+      }
+	})
+}
+	
+	 </script>
+</body>
+
+</html>

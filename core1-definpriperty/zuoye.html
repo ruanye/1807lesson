@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<input id="inp1" type="text">
+	<input id="inp2" type="text">
+	<script>
+    let obj = {name:'',age:''}
+	// input 改变给对象赋值
+	inp1.oninput=function(e){
+       obj.name = e.target.value
+	}
+	inp2.oninput=function(e){
+       obj.age = e.target.value
+	}
+	// 对象值改变给input赋值
+	for(let key in obj){
+		defineReactive(obj,key,obj[key])
+	}
+	function defineReactive(obj,key,value){
+        Object.defineProperty(obj,key,{
+			get(){
+				return v
+			},
+			set(val){
+				v=val;
+			 if(key =='name'){
+				inp1.value=val 
+			  }else{
+				  inp2.value=val
+			  }
+			}
+		})
+	}
+	</script>
+</body>
+
+</html>

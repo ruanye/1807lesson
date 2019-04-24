@@ -1,0 +1,12 @@
+{
+  "name": "ajax",
+  "version": "1.0.0",
+  "description": "server.js banner.js 后端 index.html 前端  ajax(url) ## axios的使用 1. 基于promise封装的http库  2. \b\b拦截请求和响应  3. 有效防止跨站伪造请求xsrf攻击  init 初始化  description 介绍 author 作者  npm init",
+  "main": "banner.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
