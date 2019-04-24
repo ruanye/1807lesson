@@ -10,5 +10,9 @@ axios.interceptors.response.use(res=>{
 export let getBanner=()=>{
 	return axios.get('/slider')
 }
+// 请求首页列表 
+export let getHomeList = ()=>{
+	return axios.get('/hot')
+}
 
 
