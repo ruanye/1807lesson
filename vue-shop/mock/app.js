@@ -41,6 +41,27 @@ http.createServer((req,res)=>{
     })
     return
   }
+  // 分页接口  http://localhost:3000/list?page=1
+  if(pathname==='/list'){
+     let page= parseInt(query.page); //取出前端传过来的页数
+    //把所有的数据拿出来  第一页1 1-5 第二页 5-10   page 
+    // page=0 0 5   page=1 5 10  
+    readjosn().then(data=>{
+     //假设maxlength是最大的数据长度 
+     let maxlength= (page+1)*5 
+     let pagedata= data.slice(maxlength-5,maxlength)
+      // 判断是否有下一页(用hasmore表示) maxlength >=data.length表示 没有下一页了 
+      let hasMore = maxlength>=data.length?false:true
+      res.end(JSON.stringify({
+        code:200,
+        data:{
+          hasMore,
+          pagedata
+        }
+      }))
+    })
+    return
+  }
   res.end('404')
 }).listen(3000)
-// http://localhost:3000/slider
+//http://localhost:3000/slider

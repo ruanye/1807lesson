@@ -63,10 +63,11 @@ import {} from '../api' = '../api/index.js'
 ```
 18. 轮播图 地址：https://github.com/surmon-china/vue-awesome-swiper
 下载 npm install vue-awesome-swiper --save
-19. 列表也渲染  slice(0,5) slice(5-10)
-1 数据太多的时候需要分页显示 
-2 滚动加载更多  
-3.点击加载更多
+19. 列表页分页
+传参：页数(默认第一页)
+/list?page=1 1页显示5条数据 
+
+
 
 ##报错 
 1. can not find moudle 

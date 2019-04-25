@@ -14,5 +14,10 @@ export let getBanner=()=>{
 export let getHomeList = ()=>{
 	return axios.get('/hot')
 }
+// 分页请求
+export let getPage =(page)=>{
+	return axios.get(`/list?page=${page}`)
+}
+
 
 
