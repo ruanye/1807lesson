@@ -1,13 +1,13 @@
 <template>
   <div class="about">
-     <div class="container">
+     <div class="container" @scroll="sLoadM" ref="eleScr">
         <ul class="con-items">
-          <li v-for="item in pagelist" :key="item.id" >
+          <router-link v-for="item in pagelist" :key="item.id" tag='li' :to="{name:'detail',query:{id:item.id}}">
             <img :src="item.img" alt="">
             <p>{{item.name}}</p>
             <p>{{item.info}}</p>
             <p>{{item.price}}$</p>
-          </li>
+          </router-link>
         </ul>
         <div class="btnbox">
          <button class="btn" @click="loadMore">{{hasMore?'点击加载更多':'没有更多了'}}</button>
@@ -36,6 +36,18 @@ export default {
     //  this.pagelist =this.pagelist.concat(pagedata);
      this.pagelist=[...this.pagelist,...pagedata]
      this.hasMore= hasMore
+    },
+    // 滚动加载更多
+    sLoadM(){
+      // 函数节流/函数防抖 我规定在一段时间内只触发一次 
+     clearTimeout(this.timer);
+      this.timer=setTimeout(()=>{
+         let {clientHeight,scrollTop,scrollHeight} =this.$refs.eleScr;
+         if(scrollTop+clientHeight  +20>scrollHeight){
+        // 加载更多
+           this.loadMore()
+         }
+      },13)
     },
     // 加载更多
     loadMore(){

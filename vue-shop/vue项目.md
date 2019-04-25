@@ -66,9 +66,21 @@ import {} from '../api' = '../api/index.js'
 19. 列表页分页
 传参：页数(默认第一页)
 /list?page=1 1页显示5条数据 
-
-
-
+加载更多 滚动加载更多 判断什么时候滚动到底部
+scrollTop+clientHeight>scrollHeight
+20. refs 可以获取元素或者组件  
+21. 路由跳转 跳转到详情页 
+使用标签的形式 
+router-link 
+tag='li' 把a标签转成需要的标签名 a->li
+:to  跳转到哪里 完全等价this.$router.push({name:'detail',query:{id:item.id}})
+参数 params query 
+1)params 不能用path  用name 
+2) 需要去路由定义参数在路径后面用 /:变量名  /:id 必须有，但是不固定 和params对象传过来的变量名一致  可以是多个 /:id/:name
+3) this.$route.params.变量名 
+4)query 直接使用  this.$route.query  query会追显示在地址栏  http://localhost:8080/#/detail?id=1
+22.详情页数据 
+请求详情页 需要传id 根据id来返回对应的数据 
 ##报错 
 1. can not find moudle 
 路径引错 或者文件不存在(范康文)

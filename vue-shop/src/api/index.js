@@ -18,6 +18,10 @@ export let getHomeList = ()=>{
 export let getPage =(page)=>{
 	return axios.get(`/list?page=${page}`)
 }
+// 请求详情页 
+export let getDetail =(id)=>{
+  return axios.get(`/detail?id=${id}`)
+}
 
 
 

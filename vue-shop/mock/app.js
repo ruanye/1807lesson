@@ -62,6 +62,19 @@ http.createServer((req,res)=>{
     })
     return
   }
+  // 详情页面请求
+  if(pathname==='/detail'){
+    let id = query.id;
+    readjosn().then(data=>{
+       let single =data.find(item=>item.id==id)
+       console.log(single)
+       res.end(JSON.stringify({
+         code:200,
+         data:single
+       }))
+    })
+    return 
+  }
   res.end('404')
 }).listen(3000)
 //http://localhost:3000/slider
