@@ -34,10 +34,13 @@ http.createServer((req,res)=>{
   if(pathname==='/hot'){
     readjosn().then(data=>{
      let hotdata = data.slice(0,6);
-      res.end(JSON.stringify({
+     setTimeout(()=>{
+        res.end(JSON.stringify({
         code:200,
         data:hotdata
       }))
+     },
+     10000)
     })
     return
   }
@@ -62,12 +65,18 @@ http.createServer((req,res)=>{
     })
     return
   }
-  // 详情页面请求
+  // 详情页面请求http://localhost:3000/detail?id=33000
   if(pathname==='/detail'){
     let id = query.id;
     readjosn().then(data=>{
        let single =data.find(item=>item.id==id)
-       console.log(single)
+       if(!single){
+         res.end(JSON.stringify({
+           code:201,
+           data:{}
+         }))
+         return
+       }
        res.end(JSON.stringify({
          code:200,
          data:single

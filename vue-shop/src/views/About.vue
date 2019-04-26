@@ -2,7 +2,7 @@
   <div class="about">
      <div class="container" @scroll="sLoadM" ref="eleScr">
         <ul class="con-items">
-          <router-link v-for="item in pagelist" :key="item.id" tag='li' :to="{name:'detail',query:{id:item.id}}">
+          <router-link v-for="item in pagelist" :key="item.id" tag='li' :to='{ path: `/detail/${item.id}`}'>
             <img :src="item.img" alt="">
             <p>{{item.name}}</p>
             <p>{{item.info}}</p>

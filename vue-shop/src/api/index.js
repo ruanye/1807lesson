@@ -22,6 +22,12 @@ export let getPage =(page)=>{
 export let getDetail =(id)=>{
   return axios.get(`/detail?id=${id}`)
 }
+// 使用promise.all 进行请求合并 
+export let getHomeAll=()=>{
+  return axios.all([getBanner(),getHomeList()])
+}
+
+
 
 
 

@@ -80,7 +80,11 @@ tag='li' 把a标签转成需要的标签名 a->li
 3) this.$route.params.变量名 
 4)query 直接使用  this.$route.query  query会追显示在地址栏  http://localhost:8080/#/detail?id=1
 22.详情页数据 
-请求详情页 需要传id 根据id来返回对应的数据 
+ 请求详情页 需要传id 根据id来返回对应的数据 
+ 23. $router $route
+ 1)router  表示路由的实例 方法都在router上  
+ 2）route 路由对象信息 放路由的属性 
+
 ##报错 
 1. can not find moudle 
 路径引错 或者文件不存在(范康文)
