@@ -7,6 +7,7 @@
             <p>{{item.name}}</p>
             <p>{{item.info}}</p>
             <p>{{item.price}}$</p>
+            <button class="btn" @click.stop="addCar(item)">添加到购物车</button>
           </router-link>
         </ul>
         <div class="btnbox">
@@ -55,6 +56,27 @@ export default {
       // 如果hasMore为false表示没有更多了 就不在执行请求
       if(!this.hasMore)return
       this.getList()
+    },
+    //添加到购物车
+    addCar(good){
+      //  从缓存里面取出购物车数组，如果没有，自己定义一个空的
+      let carlist=localStorage['carlist']?JSON.parse(localStorage['carlist']):[];
+      //如果购物车已经存在了，数量加1 没有的话数量为1 我们自己定义一个数量的变量叫做count 
+      let caritem = carlist.find(item=>item.id==good.id);
+      caritem?caritem.count+=1:good.count=1;
+       
+       
+      // 如果购物车有这一项了就不在往数组里面添加了
+      // sele 设置了一个是否选中的值
+      if(!caritem){
+        carlist=[...carlist,good];
+        good.sele=true;
+      }else{
+        caritem.sele=true;
+      }
+      // 新的购物车数组在重新扔到缓存里面 
+      localStorage['carlist']=JSON.stringify(carlist);
+      
     }
   }
 
@@ -78,8 +100,12 @@ export default {
   display: inline-block;
   outline: none;
   appearance: none;
+  border: none;
+  border-radius: 15px;
+  background-color: antiquewhite;
   width: 200px;
   height: 60px;
+  font-size: 30px;
   line-height: 60px;
 }
 </style>

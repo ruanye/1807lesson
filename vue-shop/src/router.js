@@ -14,14 +14,14 @@ export default new Router({
       component:()=>import('./views/My.vue')
     },
     {
-      path:'/car',
-      name:'car',
-      component:()=>import('./views/Car.vue')
-    },
-    {
       path: '/about',
       name: 'about',
       component: () => import('./views/About.vue')
+    },
+    {
+      path:'/car',
+      name:'car',
+      component:()=>import('./views/Car.vue')
     },
     {
       path: '/detail/:id',
@@ -30,3 +30,4 @@ export default new Router({
     }
   ]
 })
+
