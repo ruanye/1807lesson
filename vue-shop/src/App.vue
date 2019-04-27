@@ -27,8 +27,9 @@ a{
 .container{
   position: fixed;
   width: 100%;
-  height: 100%;
+
   bottom: 60px;
+  top: 0;
   overflow-y: auto
 }
 

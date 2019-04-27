@@ -1,13 +1,12 @@
 <template>
-	<div >
-		
-		 <div>
+	<div class="container">
+		<div>
 			 <label for="checkAll" >
 			  <span>全选</span>
 			  <input type="checkbox" id="checkAll" class="inp" :checked="checkAll">
 			 </label>
 		 </div>
-		 <div>总价：{{totalPrice}}</div>
+		 
 		<ul class="carlist-con">
 			<li v-for="good in carlist" :key="good.id">
 				<input type="checkbox" class="inp" v-model="good.sele" id="inp">
@@ -18,8 +17,9 @@
 				 <p>{{good.price}}</p>
 				</div>
 			</li>
+			
 		</ul>
-		
+		<div>总价：{{totalPrice}}</div>
 	</div>
 </template>
 <script>
@@ -48,7 +48,27 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+  .carlist-con{
+	  li{
+		  box-sizing: border-box;
+		  display: flex;
+		   flex-direction: row;
+		  padding-left: 10px;
+		  .inp{
+			  align-self: center;
+		   }
+		   div{
+			   padding-left: 10px;
+			   flex: 0 0 auto;
+			   img{
+				   max-width: 80%;
+			   }
+		   }
+		   
+	  }
+  }
   .inp{
+	flex:0 0 auto;
     appearance: none;
 	outline: none;
 	width: 40px;
@@ -56,6 +76,7 @@ export default {
 	border: 1px solid green;
 	border-radius: 20%;
 	position: relative;
+	
   }	
   .inp:checked.inp:before{
 	  position: absolute;
@@ -68,18 +89,7 @@ export default {
 	  color: green;
 	  
   }
-  .carlist-con{
-	  li{
-		  display: flex;
-		  padding-left: 10px;
-		  .inp{
-			  align-self: center;
-		   }
-		   div{
-			   padding-left: 10px
-		   }
-		   
-	  }
-  }
+  
+
  
 </style>
