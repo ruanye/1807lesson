@@ -2,11 +2,15 @@ let http = require('http');
 let url = require('url')
 let fs  = require('fs')
 let fsPromise = fs.promises;
-function readjosn(){
- return fsPromise.readFile('./good.json','utf8').then(data=>{
+function readjosn(path){
+ return fsPromise.readFile(path,'utf8').then(data=>{
     return JSON.parse(data) 
  })
 }
+function writeJson(path,data){
+  return fsPromise.writeFile(path,JSON.stringify(data),'utf8')
+}
+
 // 引入轮播图数组
 let banner = require('./banner')
 http.createServer((req,res)=>{
@@ -14,6 +18,7 @@ http.createServer((req,res)=>{
 		res.setHeader('Access-Control-Allow-Origin',"*");
     //允许哪个方法跨域
     res.setHeader('Access-Control-Allow-Methods','PUT,POST,GET,DELETE')
+    res.setHeader('Access-Control-Allow-Headers','*')
     //预检测存活时间，单位是s
     res.setHeader('Access-Control-Max-Age',6)
     // 设置编码格式 
@@ -32,7 +37,7 @@ http.createServer((req,res)=>{
   }
   // 首页列表接口 http://localhost:3000/hot
   if(pathname==='/hot'){
-    readjosn().then(data=>{
+    readjosn('./good.json').then(data=>{
      let hotdata = data.slice(0,6);
      setTimeout(()=>{
         res.end(JSON.stringify({
@@ -49,7 +54,7 @@ http.createServer((req,res)=>{
      let page= parseInt(query.page); //取出前端传过来的页数
     //把所有的数据拿出来  第一页1 1-5 第二页 5-10   page 
     // page=0 0 5   page=1 5 10  
-    readjosn().then(data=>{
+    readjosn('./good.json').then(data=>{
      //假设maxlength是最大的数据长度 
      let maxlength= (page+1)*5 
      let pagedata= data.slice(maxlength-5,maxlength)
@@ -68,7 +73,7 @@ http.createServer((req,res)=>{
   // 详情页面请求http://localhost:3000/detail?id=33000
   if(pathname==='/detail'){
     let id = query.id;
-    readjosn().then(data=>{
+    readjosn('./good.json').then(data=>{
        let single =data.find(item=>item.id==id)
        if(!single){
          res.end(JSON.stringify({
@@ -84,6 +89,40 @@ http.createServer((req,res)=>{
     })
     return 
   }
+  // 定义购物车列表接口 http://localhost:3000/carlist
+   if(pathname=='/carlist'){
+     readjosn('./car.json').then(data=>{
+       res.end(JSON.stringify({
+         code:200,
+         data
+       }))
+     })
+     return
+   }
+  // 添加购物车接口
+  if(pathname=='/addcar'){
+    let str ='';
+    // 请求监听数据
+    req.on('data',chunk=>{
+      str+=chunk
+    });
+    // 请求结束
+    req.on('end',()=>{
+       // adData 传过来的数据
+       let adData = JSON.parse(str);
+       readjosn('./car.json').then(data=>{
+         let newData =  data.push(adData)
+         writeJson('./car.json',newData).then(data=>{
+            res.end({
+              code:200,
+              msg:'添加成功'
+            })
+         })
+       })
+    })
+    return
+  }
+   
   res.end('404')
 }).listen(3000)
-//http://localhost:3000/slider
+//

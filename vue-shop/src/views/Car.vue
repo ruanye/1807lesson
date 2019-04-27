@@ -3,7 +3,7 @@
 		<div>
 			 <label for="checkAll" >
 			  <span>全选</span>
-			  <input type="checkbox" id="checkAll" class="inp" :checked="checkAll">
+			  <input type="checkbox" id="checkAll" class="inp" v-model="checkAll">
 			 </label>
 		 </div>
 		 
@@ -13,8 +13,13 @@
 		       <div>
 				 <img :src="good.img" alt="">
 				 <p>{{good.name}}</p>
-				 <p>{{good.count}}</p>
-				 <p>{{good.price}}</p>
+				 <p>
+					 <span @click="good.count++">+</span>
+					 {{good.count}}
+					 <span @click="good.count>1?good.count--:1">-</span>
+					</p>
+				  <p>{{good.price}}</p>
+				  <button class="btn" @click="deleGood(good)">删除</button>
 				</div>
 			</li>
 			
@@ -26,8 +31,17 @@
 export default {
    name:'car',
    computed:{
-	  checkAll(){
-       return this.carlist.every(item=>item.sele==true)
+	  checkAll:{
+        get(){
+		  return this.carlist.every(item=>item.sele==true)
+		// return !this.carlist.some(item=>item.sele==false)
+		//判断选中的有多少个 把选中的放到一个数组里面 判断选中的数组长度是否是所有商品的数组长度  
+		// let newary = this.carlist.filter(item=>item.sele==true)
+		//  return newary.length ==this.carlist.length;	
+		},
+		set(val){//checkall改变后的值
+          this.carlist.forEach(item=>item.sele=val)
+		}
 	  },
 	  totalPrice(){
 		  return this.carlist.filter(item=>item.sele==true).reduce((prev,next)=>{
@@ -44,6 +58,14 @@ export default {
 	   if(localStorage['carlist']){
 		 this.carlist =JSON.parse(localStorage['carlist'])
 	   }
+	},
+	methods:{
+		// 购物车删除功能
+		deleGood(good){
+		// 条件成立的新数组 
+          this.carlist= this.carlist.filter(item=>item.id!=good.id)
+		//  this.carlist.splice(index,1)
+	    }
 	}
 }
 </script>
@@ -90,6 +112,18 @@ export default {
 	  
   }
   
+.btn{
+  display: inline-block;
+  outline: none;
+  appearance: none;
+  border: none;
+  border-radius: 15px;
+  background-color: antiquewhite;
+  width: 200px;
+  height: 60px;
+  font-size: 30px;
+  line-height: 60px;
+}
 
  
 </style>

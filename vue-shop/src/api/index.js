@@ -26,6 +26,11 @@ export let getDetail =(id)=>{
 export let getHomeAll=()=>{
   return axios.all([getBanner(),getHomeList()])
 }
+// 添加商品到购物车  
+export let addGood=(good)=>{
+	console.log(good)
+  return axios.post('/addcar',good)
+}
 
 
 

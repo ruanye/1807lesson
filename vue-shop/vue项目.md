@@ -84,6 +84,10 @@ tag='li' 把a标签转成需要的标签名 a->li
  23. $router $route
  1)router  表示路由的实例 方法都在router上  
  2）route 路由对象信息 放路由的属性 
+ 23. input type =check  使用v-model 的时候 出现 was assigned to but it has no setter 我们需要设置get 和set 
+ computed 属性如果是单个值 直接使用函数 如果需要get 和set 则需要写成对象 
+ 
+ 
 
 ##报错 
 1. can not find moudle 
