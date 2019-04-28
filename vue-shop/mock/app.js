@@ -99,7 +99,7 @@ http.createServer((req,res)=>{
      })
      return
    }
-  // 添加购物车接口
+  // 添加购物车接口http://localhost:3000/carlist
   if(pathname=='/addcar'){
     let str ='';
     // 请求监听数据
@@ -109,14 +109,40 @@ http.createServer((req,res)=>{
     // 请求结束
     req.on('end',()=>{
        // adData 传过来的数据
-       let adData = JSON.parse(str);
-       readjosn('./car.json').then(data=>{
-         let newData =  data.push(adData)
-         writeJson('./car.json',newData).then(data=>{
-            res.end({
+        //  判断传进来的参数不存在
+         if(str==''){
+           res.end(JSON.stringify({
+            code:201,
+            msg:'参数错误'
+          }))
+          return
+        }
+        let adData = JSON.parse(str);
+        if(!adData.id&&adData.id!=0&&!adData.name){
+          res.end(JSON.stringify({
+            code:201,
+            msg:'参数错误'
+          }))
+          return
+        }
+        readjosn('./car.json').then(data=>{
+         let  newData; //最后写入的数据
+          // 看购物车有没有这条数据
+         let singledata = data.find(item=>item.id ==adData.id)
+        //  有的话数量加1，没有的话数量等于1
+        if(singledata){
+           singledata.count++;
+           newData=[...data]
+        }else{
+          adData.count=1;
+          newData = [...data,adData]
+        }
+        // 把最后的数据写到car.json里面 
+         writeJson('./car.json',newData).then(()=>{
+           res.end(JSON.stringify({
               code:200,
               msg:'添加成功'
-            })
+            }))
          })
        })
     })

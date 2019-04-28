@@ -62,8 +62,12 @@ export default {
    async addCar(good){
       // 提交请求到后端 
      good = JSON.stringify(good)
-     let r =  await addGood(good)
-     console.log(r)
+     let {code,msg} =  await addGood(good)
+      if(code==200){
+         alert('添加成功')
+      }else{
+        alert('网络错误，请稍后再试')
+      }
     }
   }
 
