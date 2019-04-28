@@ -86,12 +86,26 @@ tag='li' 把a标签转成需要的标签名 a->li
  2）route 路由对象信息 放路由的属性 
  23. input type =check  使用v-model 的时候 出现 was assigned to but it has no setter 我们需要设置get 和set 
  computed 属性如果是单个值 直接使用函数 如果需要get 和set 则需要写成对象 
- 
+ 24. 手动给对象的属性增加监听 
+this.$set/Vue.set  等于给这个对象后增加的key添加了defineProperty属性  
+三个参数 对象、key、value 
+注意事项：对象后增加的属性并不会并劫持，需要我们手动设置
+25. 把一个组件当做一个带着事件和数据的html片段，只是我们这个组件可以随便拆分，随处使用。
+拆分组件尽量遵循一个组件只实现一个功能的原则。  
+  
+
  
 
 ##报错 
 1. can not find moudle 
 路径引错 或者文件不存在(范康文)
+
+51作业 
+
+用vue 写todolist 
+http://www.todolist.cn/ 
+
+加一个回到顶部的按钮      
 
 
 

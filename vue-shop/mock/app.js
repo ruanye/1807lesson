@@ -104,7 +104,7 @@ http.createServer((req,res)=>{
     let str ='';
     // 请求监听数据
     req.on('data',chunk=>{
-      str+=chunk
+      str+=chunk;
     });
     // 请求结束
     req.on('end',()=>{

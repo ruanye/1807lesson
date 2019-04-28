@@ -1,5 +1,6 @@
 <template>
 	<div class="container">
+		<head-title>购物车</head-title>
 		<div>
 			 <label for="checkAll" >
 			  <span>全选</span>
@@ -28,8 +29,13 @@
 	</div>
 </template>
 <script>
+import {getCarList} from '../api'
+import HeadTitle from '../components/HeadTitle.vue'
 export default {
    name:'car',
+	 components:{
+		 HeadTitle
+	 },
    computed:{
 	  checkAll:{
         get(){
@@ -55,11 +61,17 @@ export default {
 	   }
    },
    created(){
-	   if(localStorage['carlist']){
-		 this.carlist =JSON.parse(localStorage['carlist'])
-	   }
-	},
+      this.getlist();
+	  },
 	methods:{
+		// 获取购物车列表 
+	 async getlist(){
+      let {data} = await getCarList()
+			this.carlist=data;
+			this.carlist.forEach(item=>{
+				 this.$set(item,'sele',true)
+	    })
+		},
 		// 购物车删除功能
 		deleGood(good){
 		// 条件成立的新数组 

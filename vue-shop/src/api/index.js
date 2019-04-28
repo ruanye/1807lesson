@@ -31,6 +31,11 @@ export let addGood=(good)=>{
 	console.log(good)
   return axios.post('/addcar',good)
 }
+// 购车列表接口
+export let getCarList=()=>{
+	return axios.get('/carlist') 
+}
+
 
 
 
