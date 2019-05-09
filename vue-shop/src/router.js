@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 Vue.use(Router)
 export default new Router({
+ 
   routes: [
     {
       path: '/',
@@ -14,9 +15,9 @@ export default new Router({
       component:()=>import('./views/My.vue')
     },
     {
-      path: '/about',
-      name: 'about',
-      component: () => import('./views/About.vue')
+      path: '/list',
+      name: 'list',
+      component: () => import('./views/List.vue')
     },
     {
       path:'/car',

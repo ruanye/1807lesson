@@ -148,7 +148,45 @@ http.createServer((req,res)=>{
     })
     return
   }
-   
+  // http://localhost:3000/delegood?id=1
+  // 删除购物车商品接口 
+  if(pathname==='/delegood'){
+    let id = query.id; 
+    readjosn('./car.json').then(carlist=>{
+      let newData = carlist.filter(item=>item.id!=id)
+      writeJson('./car.json',newData).then(()=>{
+        res.end(JSON.stringify({
+          code:200,
+          data:{}
+        }))
+      })
+    })
+    return
+  }
+  if(pathname==='/changecount'){
+    let str ='';
+    // 请求监听数据
+    req.on('data',chunk=>{
+      str+=chunk;
+    });
+    req.on('end',()=>{
+      // 被修改的数据，带着id
+      let modifyData= JSON.parse(str);
+      // 拿到购物车所有的数据
+      readjosn('./car.json').then(carlist=>{
+        let newCarlist = carlist.map(item=>{
+          // 如果id相等 证明是被修改的项 返回修改项 ，否则直接返回原有数据
+          if(modifyData.id==item.id){
+            return modifyData
+          }
+          return item
+        })
+        writeJson('./car.json',newCarlist)
+      })
+      
+    })
+    return
+  }
   res.end('404')
 }).listen(3000)
 //

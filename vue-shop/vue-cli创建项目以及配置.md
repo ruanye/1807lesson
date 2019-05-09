@@ -28,8 +28,6 @@ duction) (Y/n)
 6. 设定配置文件的方式 
 In dedicated config files (生成配置文件)
 In package.json （集成到package.json里面）
-
-
 在package.json 
 脚本配置： npm run serve
 "scripts": {

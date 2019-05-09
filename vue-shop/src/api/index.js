@@ -35,6 +35,14 @@ export let addGood=(good)=>{
 export let getCarList=()=>{
 	return axios.get('/carlist') 
 }
+// 删除购物车中商品的接口
+export let deleCarGood=(id)=>{
+	return axios.delete(`/delegood?id=${id}`)
+}
+// 数量改变请求 
+export let changeCount = (good)=>{
+   return axios.post('/changecount',good)
+}
 
 
 

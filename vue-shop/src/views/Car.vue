@@ -15,12 +15,12 @@
 				 <img :src="good.img" alt="">
 				 <p>{{good.name}}</p>
 				 <p>
-					 <span @click="good.count++">+</span>
+					 <span @click="addNum(good)">+</span>
 					 {{good.count}}
 					 <span @click="good.count>1?good.count--:1">-</span>
 					</p>
 				  <p>{{good.price}}</p>
-				  <button class="btn" @click="deleGood(good)">删除</button>
+				  <button class="btn" @click.stop="deleGood(good)">删除</button>
 				</div>
 			</li>
 			
@@ -29,7 +29,7 @@
 	</div>
 </template>
 <script>
-import {getCarList} from '../api'
+import {getCarList,deleCarGood,changeCount} from '../api'
 import HeadTitle from '../components/HeadTitle.vue'
 export default {
    name:'car',
@@ -73,11 +73,20 @@ export default {
 	    })
 		},
 		// 购物车删除功能
-		deleGood(good){
-		// 条件成立的新数组 
-          this.carlist= this.carlist.filter(item=>item.id!=good.id)
-		//  this.carlist.splice(index,1)
-	    }
+	async	deleGood(good){
+	    // 点击发送删除请求
+		   await deleCarGood(good.id);
+			// 请求成功之后前端做删除(需要后端删除之后前端再去做删除)
+		  this.carlist =	this.carlist.filter(item=>item.id!=good.id)
+			
+		 },
+	 // 商品数量加1事件  
+	  async addNum(good){
+      good.count +=1;
+			good = JSON.stringify(good)
+		  // 数量改变之后发送请求 
+			await changeCount(good)
+		}	
 	}
 }
 </script>

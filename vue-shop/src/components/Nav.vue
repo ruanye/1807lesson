@@ -4,7 +4,7 @@
         <i class="iconfont icon-shouye-"></i>
         <span>首页</span>
       </router-link> 
-      <router-link to="/about">
+      <router-link to="/list">
         <i class="iconfont  icon-Group-"></i>
         <span>列表</span>
       </router-link>
