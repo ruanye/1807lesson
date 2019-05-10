@@ -90,8 +90,7 @@ export default {
 			   	good.count=1
 			  }
 			}
-	  	good = JSON.stringify(good)
-		  // 数量改变之后发送请求 
+	   // 数量改变之后发送请求 
 			await changeCount(good)
 		}	
 	}

@@ -82,8 +82,9 @@ tag='li' 把a标签转成需要的标签名 a->li
 22.详情页数据 
  请求详情页 需要传id 根据id来返回对应的数据 
  23. $router $route
- 1)router  表示路由的实例 方法都在router上  
+ 1) router  表示路由的实例 方法都在router上 
  2）route 路由对象信息 放路由的属性 
+ 
  23. input type =check  使用v-model 的时候 出现 was assigned to but it has no setter 我们需要设置get 和set 
  computed 属性如果是单个值 直接使用函数 如果需要get 和set 则需要写成对象 
  24. 手动给对象的属性增加监听 
@@ -97,8 +98,10 @@ this.$set/Vue.set  等于给这个对象后增加的key添加了defineProperty�
 npm install express -s
 封装了req和res  有很多中间件可以配合使用 
 npm install cors  cors跨域中间件 
+npm install body-parser 解析数据用的 
 express  koa  egg 
-  
+npm install -g  nodemon  node代码修改后会自动重启 可以做到实时看服务器代码 
+
 
  
 

@@ -61,7 +61,6 @@ export default {
     //添加到购物车
    async addCar(good){
       // 提交请求到后端 
-     good = JSON.stringify(good)
      let {code,msg} =  await addGood(good)
       if(code==200){
          alert('添加成功')
