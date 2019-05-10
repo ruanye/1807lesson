@@ -91,7 +91,13 @@ this.$set/Vue.set  等于给这个对象后增加的key添加了defineProperty�
 三个参数 对象、key、value 
 注意事项：对象后增加的属性并不会并劫持，需要我们手动设置
 25. 把一个组件当做一个带着事件和数据的html片段，只是我们这个组件可以随便拆分，随处使用。
-拆分组件尽量遵循一个组件只实现一个功能的原则。  
+拆分组件尽量遵循一个组件只实现一个功能的原则。
+26. vue-cli3.0配置跨域  在根目录建立一个vue.config.js(名字不能变) 
+27. express的使用
+npm install express -s
+封装了req和res  有很多中间件可以配合使用 
+npm install cors  cors跨域中间件 
+express  koa  egg 
   
 
  

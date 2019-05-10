@@ -1,5 +1,6 @@
 import axios from 'axios'
-axios.defaults.baseURL='http://localhost:3000'
+// axios.defaults.baseURL='http://localhost:3000'
+// http://localhost:8080/slider
 // 响应拦截
 axios.interceptors.response.use(res=>{
 	return res.data
@@ -39,9 +40,14 @@ export let getCarList=()=>{
 export let deleCarGood=(id)=>{
 	return axios.delete(`/delegood?id=${id}`)
 }
-// 数量改变请求 
+// // 数量改变请求 
+// export let changeCount = (good)=>{
+//    return axios.post('/changecount',good)
+//}
+
+// 数量改变请求 put方式 
 export let changeCount = (good)=>{
-   return axios.post('/changecount',good)
+   return axios.put(`/changecount`,good)
 }
 
 

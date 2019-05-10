@@ -10,14 +10,14 @@
 		 
 		<ul class="carlist-con">
 			<li v-for="good in carlist" :key="good.id">
-				<input type="checkbox" class="inp" v-model="good.sele" id="inp">
+				<input type="checkbox" class="inp" v-model="good.sele" id="inp" @change="modiGood(good)">
 		       <div>
 				 <img :src="good.img" alt="">
 				 <p>{{good.name}}</p>
 				 <p>
-					 <span @click="addNum(good)">+</span>
+					 <span @click="modiGood(good,1)">+</span>
 					 {{good.count}}
-					 <span @click="good.count>1?good.count--:1">-</span>
+					 <span @click="modiGood(good,-1)">-</span>
 					</p>
 				  <p>{{good.price}}</p>
 				  <button class="btn" @click.stop="deleGood(good)">删除</button>
@@ -68,9 +68,9 @@ export default {
 	 async getlist(){
       let {data} = await getCarList()
 			this.carlist=data;
-			this.carlist.forEach(item=>{
-				 this.$set(item,'sele',true)
-	    })
+			// this.carlist.forEach(item=>{
+			// 	 this.$set(item,'sele',true)
+	    // })
 		},
 		// 购物车删除功能
 	async	deleGood(good){
@@ -80,10 +80,17 @@ export default {
 		  this.carlist =	this.carlist.filter(item=>item.id!=good.id)
 			
 		 },
-	 // 商品数量加1事件  
-	  async addNum(good){
-      good.count +=1;
-			good = JSON.stringify(good)
+		
+	 // 商品参数改变事件  
+	  async modiGood(good,num){
+		  if(num){
+				// num存在证明点击的是加号或者减号，否则点击的是单选
+        good.count +=num;
+			  if(good.count<1){
+			   	good.count=1
+			  }
+			}
+	  	good = JSON.stringify(good)
 		  // 数量改变之后发送请求 
 			await changeCount(good)
 		}	
