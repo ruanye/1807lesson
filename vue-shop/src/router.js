@@ -2,12 +2,16 @@ import Vue from 'vue'
 import Router from 'vue-router'
 Vue.use(Router)
 export default new Router({
- 
+  mode:'history',
   routes: [
+    
     {
       path: '/',
       name: 'home',
-      component: ()=>import('./views/Home.vue')
+      component: ()=>import('./views/Home.vue'),
+      meta:{
+        keepAlive:true
+      }
     },
     {
       path:'/my',
@@ -28,6 +32,11 @@ export default new Router({
       path: '/detail/:id',
       name: 'detail',
       component: () => import('./views/Detail.vue')
+    },
+    {
+     path:'/*',
+     redirect:'/',
+     component:()=>import('./views/Home.vue')
     }
   ]
 })

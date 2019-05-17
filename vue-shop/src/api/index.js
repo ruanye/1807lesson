@@ -1,5 +1,7 @@
 import axios from 'axios'
-// axios.defaults.baseURL='http://localhost:3000'
+import router from '../router'
+console.log(router)
+axios.defaults.baseURL='http://localhost:3000'
 // http://localhost:8080/slider
 // 响应拦截
 axios.interceptors.response.use(res=>{
@@ -49,6 +51,7 @@ export let deleCarGood=(id)=>{
 export let changeCount = (good)=>{
    return axios.post(`/changecount`,good)
 }
+
 
 
 

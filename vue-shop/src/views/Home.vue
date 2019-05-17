@@ -6,6 +6,7 @@
        </div>
       <template v-else>
       <Banner :swiperSlides="sliders"></Banner>
+      
       <div class="home-list">
         <ul>
           <li v-for="item in homelist" :key="item.id">

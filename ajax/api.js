@@ -57,3 +57,6 @@ axios.put() //和post完全相同 resultful风格  resultful api
 //res=  {congig:...,data:这里对应的才是我要的数据，headers;...}
 // res.data
 
+let x= 1,y=3.c =4 
+let x= 1 y= 3,c =4 z= 6 h =111 121i33j
+res.data response interceptors.response.use 然后 这样做 

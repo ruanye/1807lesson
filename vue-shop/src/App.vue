@@ -1,8 +1,12 @@
 <template>
   <div id="app">
-    <Nav/>
-    <router-view/>
-  </div>
+     <Nav/>
+     <!--需要缓存的路由视图走这里 -->
+     <keep-alive>
+       <router-view v-if="$route.meta.keepAlive"/>
+    </keep-alive>
+     <router-view v-if="!$route.meta.keepAlive"/>
+    </div>
 </template>
 <script>
 import Nav from '@/components/Nav'
