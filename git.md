@@ -30,6 +30,14 @@ git push origin master
 忽略项 
 .gitignore  不提交的文件 
 
+Request header  
+
+Accept: application/json, text/plain, */*
+Authorization: token
+Origin: http://localhost:8080
+Referer: http://localhost:8080/
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36
+
 
 
 
