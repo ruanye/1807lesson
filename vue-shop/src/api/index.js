@@ -1,5 +1,6 @@
 import axios from 'axios'
 axios.defaults.baseURL='http://localhost:3000'
+
 //全局设置 token 和 post发送的数据格式 
 //withCredentials 允许携带cookie 
 axios.defaults.headers.common['Authorization'] = 'AUTH_TOKEN';
@@ -7,7 +8,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
 // http://localhost:8080/slider
 //请求拦截
 axios.interceptors.request.use(config=>{
-   console.log(config)
+  
    //允许携带cookie 
    // config['withCredentials']= true;
    

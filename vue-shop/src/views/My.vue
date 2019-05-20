@@ -4,8 +4,14 @@
 	</div>
 </template>
 <script>
+import {getAlist} from '../api/user.js'
 import A from './A'
 export default {
+	created() {
+	  getAlist().then(data=>{
+		  console.log(data)
+	  })
+	},
 	components:{
 		A
 	}

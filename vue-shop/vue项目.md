@@ -110,6 +110,10 @@ npm install -g  nodemon  node代码修改后会自动重启 可以做到实时�
 29. * keep-alive 缓存 
 router-view 路由对应的视图 
 路由元信息  meta 对象 meta:{keepAlive:true}
+30. src 建一个文件夹 lib 
+lib 工具类 建一个文件 axios.js 
+
+
 
 
 ##报错 
