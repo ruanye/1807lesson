@@ -1,6 +1,5 @@
 import axios from 'axios'
-axios.defaults.baseURL='http://localhost:3000'
-
+axios.defaults.baseURL='http://132.232.89.22:3000'
 //全局设置 token 和 post发送的数据格式 
 //withCredentials 允许携带cookie 
 axios.defaults.headers.common['Authorization'] = 'AUTH_TOKEN';

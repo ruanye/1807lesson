@@ -24,6 +24,10 @@ export default 默认导出
 2)  在components里面注册
 3） 用标签的形式使用
 7. * props传值默认值如果是数组或者对象的时候必须用函数
+数组、对象、布尔值、数字需要使用 
+v-bind 动态传值  :s ='1'
+2种方式 数组 和对象
+定义成对象的时候 可以设置默认值 和验证数据类型   
 8. * 配置路由跳转
 1) router-link 写跳转路径 
 2) 建立路由对应的.vue文件
@@ -75,10 +79,14 @@ router-link
 tag='li' 把a标签转成需要的标签名 a->li
 :to  跳转到哪里 完全等价this.$router.push({name:'detail',query:{id:item.id}})
 参数 params query 
-1)params 不能用path  用name 
-2) 需要去路由定义参数在路径后面用 /:变量名  /:id 必须有，但是不固定 和params对象传过来的变量名一致  可以是多个 /:id/:name
-3) this.$route.params.变量名 
-4)query 直接使用  this.$route.query  query会追显示在地址栏  http://localhost:8080/#/detail?id=1
+1)params 使用path的时候 params会被忽略 需要手写完整的带有参数的 path  例子
+```` 
+ :to='{path:`detail/${num}`}' 
+```
+2)直接传参params 不能用path  用name 
+3)params  需要去路由定义参数在path后面用 /:变量名  /:id 必须有,但是不固定 和params对象传过来的变量名一致  可以是多个 /:id/:name
+4) this.$route.params.变量名 
+5)query 直接使用  this.$route.query  query会以查询字符串的形式显示在地址栏  http://localhost:8080/#/detail?id=1
 22.详情页数据 
  请求详情页 需要传id 根据id来返回对应的数据 
  23. ** $router $route

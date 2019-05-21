@@ -4,8 +4,19 @@ Vue.use(Router)
 export default new Router({
   mode:'history',
   routes: [
-    
     {
+      path:'/fuxi',
+      name:'fuxi',
+      component:()=>import('@/views/fuxi.vue')
+
+     },
+    {
+      path:'/prop',
+      name:'prop',
+      component:()=>import('@/views/prop.vue')
+
+     },
+     {
       path: '/',
       name: 'home',
       component: ()=>import('./views/Home.vue'),
